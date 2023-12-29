@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import Link from "next/link";
 
 export default  function List() {
 
@@ -6,7 +7,7 @@ export default  function List() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch('/api/posts');
+            const response = await fetch('/api/getPostsDataAll');
             const data = await response.json();
             console.log(data);
             setPosts(data);
@@ -18,8 +19,13 @@ export default  function List() {
         <div className="list-bg">
 
             {posts.map(data => (
-                <div key={data.id} className="list-item">
-                    <h2>{data.title}</h2>
+                <div key={data._id} className="list-item">
+                    <h2>
+                        <Link
+                            href={`/detail/${data._id}`}
+
+                        >{data.title}</Link>
+                    </h2>
                     <p>{data.content}</p>
                 </div>
             ))}
