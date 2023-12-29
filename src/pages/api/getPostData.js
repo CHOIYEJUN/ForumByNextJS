@@ -1,4 +1,4 @@
-// pages/api/getPostsDataAll.js
+// pages/api/getPostData.js
 import {MongoClient, ObjectId} from 'mongodb';
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
