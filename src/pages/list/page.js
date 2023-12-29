@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 
-
-export default  function Page() {
+export default  function List() {
 
     const [posts, setPosts] = useState([]);
 
@@ -9,23 +8,21 @@ export default  function Page() {
         async function fetchData() {
             const response = await fetch('/api/posts');
             const data = await response.json();
+            console.log(data);
             setPosts(data);
         }
-
         fetchData();
     }, []);
 
-
     return (
-        <div>
-            <h1>Posts</h1>
-            {posts.map((post, index) => (
-                <div key={index}>
-                    <h2>{post.title}</h2>
-                    <p>{post.content}</p>
+        <div className="list-bg">
+
+            {posts.map(data => (
+                <div key={data.id} className="list-item">
+                    <h2>{data.title}</h2>
+                    <p>{data.content}</p>
                 </div>
             ))}
         </div>
-    );
-
+    )
 }
