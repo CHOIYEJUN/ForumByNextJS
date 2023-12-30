@@ -23,6 +23,8 @@ export default  function List() {
                     <h2>
                         <Link
                             href={`/detail/${data._id}`}
+                            //prefetch => 이동 할 페이지의 데이터를 미리 가져옵니다. 옵션으로 키고끄기 가능
+                            prefetch={true}
 
                         >{data.title}</Link>
                     </h2>
