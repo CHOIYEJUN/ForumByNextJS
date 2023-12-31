@@ -25,7 +25,8 @@ export default async function handler(req, res) {
                     title : title,
                     content : content
                 });
-            res.redirect("/wite", 200)
+
+            res.redirect("/write", 200)
         }
 
     }catch (error) {
