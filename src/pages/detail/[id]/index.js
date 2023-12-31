@@ -20,8 +20,17 @@ export async function getServerSideProps(context) {
     const { id } = context.params;
     let  data = null;
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
     async function fetchData() {
-        const response = await fetch(`${apiUrl}/api/getPostData?id=${id}`);
+
+        const requestOptions = {
+            method : "GET",
+            headers : {
+                'Content-Type' : 'application/json',
+            },
+        }
+
+        const response = await fetch(`${apiUrl}/api/getPostData/getData?id=${id}`, requestOptions);
         data = await response.json();
     }
     await fetchData();

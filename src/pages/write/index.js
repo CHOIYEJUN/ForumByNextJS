@@ -1,5 +1,5 @@
 import {useState} from "react";
-
+import styles from "./write.module.css"
 export default function Write() {
 
     const [title, setTitle] = useState(null);
@@ -25,19 +25,14 @@ export default function Write() {
         }
     }
 
+
     return (
         <>
             <h1>글 작성 페이지</h1>
 
 
            {/* Delete, Put 사용 안됨..*/}
-            <form action={"/api/getPostData/writePostData"} method={"GET"}>
-                <button type={"submit"}>데이터 출력 버튼</button>
-            </form>
 
-            <form action={"/api/getPostData/nowTime"} method={"GET"}>
-                <button type={"submit"}>시간 출력 버튼</button>
-            </form>
 
             <form action={"/api/getPostData/writePostData"} method={"POST"}>
 
@@ -47,6 +42,7 @@ export default function Write() {
                     value={title}
                     placeholder={"title"}
                     onChange={(e) => onChange}
+                    className={styles.input}
                 />
 
                 <input
@@ -55,6 +51,7 @@ export default function Write() {
                     placeholder={"content"}
                     value={content}
                     onChange={(e) => onChange}
+                    className={styles.input}
                 />
                 <button type={"submit"} onSubmit={onSubmit}>글쓰기</button>
             </form>
