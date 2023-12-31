@@ -1,13 +1,22 @@
 import {useEffect, useState} from "react";
 import Link from "next/link";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default  function List() {
 
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
+
+        const requestOptions = {
+            method : "GET",
+            headers : {
+                'Content-Type' : 'application/json',
+            },
+        }
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         async function fetchData() {
-            const response = await fetch('/api/getPostsDataAll');
+            const response = await fetch(`${apiUrl}/api/getPostData/writePostData`, requestOptions);
             const data = await response.json();
             console.log(data);
             setPosts(data);

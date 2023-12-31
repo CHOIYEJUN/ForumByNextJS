@@ -31,15 +31,15 @@ export default function Write() {
 
 
            {/* Delete, Put 사용 안됨..*/}
-            <form action={"/api/writePostData"} method={"GET"}>
+            <form action={"/api/getPostData/writePostData"} method={"GET"}>
                 <button type={"submit"}>데이터 출력 버튼</button>
             </form>
 
-            <form action={"/api/nowTime"} method={"GET"}>
+            <form action={"/api/getPostData/nowTime"} method={"GET"}>
                 <button type={"submit"}>시간 출력 버튼</button>
             </form>
 
-            <form action={"/api/writePostData"} method={"POST"}>
+            <form action={"/api/getPostData/writePostData"} method={"POST"}>
 
                 <input
                     type={"text"}
