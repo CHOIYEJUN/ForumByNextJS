@@ -1,5 +1,5 @@
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
-import {MongoClient} from "mongodb";
+import {MongoClient, ObjectId} from "mongodb";
 
 export default async function handler(req, res) {
     const url = process.env.NEXT_PUBLIC_MongoDB_URL;
@@ -26,7 +26,26 @@ export default async function handler(req, res) {
                     content : content
                 });
 
-            res.redirect("/write", 200)
+            res.redirect("/list", 200);
+        }else if (req.method === "PUT"){
+            await client.connect();
+            const {title, content, _id} = req.body
+            const db = client.db('forum');
+            const post = await db
+                .collection('post')
+                .updateOne(
+                    {
+                        _id : new ObjectId(_id),
+                    },
+                    {
+                        $set: {
+                            title: title,
+                            content: content
+                        }
+                    }
+                )
+            res.redirect("/list", 200);
+            alert("수정완료!");
         }
 
     }catch (error) {

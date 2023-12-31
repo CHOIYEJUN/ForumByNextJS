@@ -38,6 +38,8 @@ export default  function List() {
                         >{data.title}</Link>
                     </h2>
                     <p>{data.content}</p>
+
+                    <Link href={`/edit/${data._id}`}>🏗️수정하기</Link>
                 </div>
             ))}
         </div>
