@@ -27,6 +27,7 @@ export default async function handler(req, res) {
                 });
 
             res.redirect("/list", 200);
+            alert("등록완료!");
         }else if (req.method === "PUT"){
             await client.connect();
             const {title, content, _id} = req.body
@@ -46,6 +47,21 @@ export default async function handler(req, res) {
                 )
             res.redirect("/list", 200);
             alert("수정완료!");
+        }else if(req.method === "DELETE"){
+            await client.connect();
+            const {_id} = req.body;
+            const db = client.db('forum');
+            const post = await db
+                .collection('post')
+                .deleteOne(
+                    {
+                        _id : new ObjectId(_id),
+                    }
+                )
+            console.log(post);
+            res.redirect("/list", 200).json({ok : true});
+            alert("삭제완료!");
+
         }
 
     }catch (error) {
